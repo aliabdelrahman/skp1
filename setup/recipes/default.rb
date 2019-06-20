@@ -86,7 +86,7 @@ server {
     listen [::]:80;
     root /var/www/ali;
     index  index.php index.html index.htm;
-    server_name  #{node['main_domain'] www.'#{node['main_domain']';
+    server_name  #{node['main_domain']} www.#{node['main_domain']};
 
 
     location ~ [^/]\.php(/|$) {
@@ -95,7 +95,7 @@ server {
     fastcgi_pass             unix:/var/run/php-fpm/php-fpm.sock;
     include                  fastcgi_params;
     fastcgi_param   PATH_INFO       $fastcgi_path_info;
-    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;'
+    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
 
 }"
