@@ -1,0 +1,9 @@
+#cookbook ""
+
+source "https://supermarket.chef.io"
+
+cookbook "awscli", "1.1.2"
+
+metadata
+
+
