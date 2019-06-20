@@ -1,2 +1,2 @@
-name "opsworks-setup"
+name "setup"
 depends "awscli", "1.1.2"
