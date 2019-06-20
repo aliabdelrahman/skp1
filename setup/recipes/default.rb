@@ -93,7 +93,7 @@ server {
 
 
     location ~ [^/]\.php(/|$) {
-    fastcgi_split_path_info  '^(.+\.php)(/.+)$;
+    fastcgi_split_path_info  ^(.+\.php)(/.+)$;
     fastcgi_index            index.php;
     fastcgi_pass             unix:/var/run/php-fpm/php-fpm.sock;
     include                  fastcgi_params;
