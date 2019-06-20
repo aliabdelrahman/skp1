@@ -11,10 +11,13 @@ execute "update-upgrade" do
   action :run
 end
 
-package "Webserver" do
-  package_name "nginx"
+#package "Webserver" do
+ # package_name "nginx"
+#end
+execute "install nginx" do
+command "amazon-linux-extras install nginx1.12"
+    action :run
 end
-
 package "FPM" do
   package_name "php-fpm"
 end
