@@ -87,7 +87,7 @@ file "/etc/nginx/conf.d/#{node['main_domain']}.conf" do
 server {
     listen 80;
     listen [::]:80;
-    root /var/www/#{app_user};
+    root #{app_path};
     index  index.php index.html index.htm;
     server_name  #{node['main_domain']} www.#{node['main_domain']};
 
