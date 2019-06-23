@@ -135,11 +135,17 @@ file '/etc/php-fpm.d/www.conf' do
   action :delete
 end
 
-cookbook_file "/etc/php-fpm.d/www.conf" do
-  source "www.conf"
-  mode "0644"
-  notifies :restart, "service[nginx]"
+template '/etc/php-fpm.d/www.conf' do
+  source 'www.conf.erb'
+  variables(lis: '/var/run/php-fpm/php-fpm.sock')
+  variables(appuser: node['app_user'])
+  variables(appgroup: node['app_group'])
 end
+#cookbook_file "/etc/php-fpm.d/www.conf" do
+#  source "www.conf"
+#  mode "0644"
+#  notifies :restart, "service[nginx]"
+#end
 
 service 'php-fpm' do
   action :restart
