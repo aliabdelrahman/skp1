@@ -56,17 +56,6 @@ directory "Web app root" do
   path app_path
 end
 
-
-file '/etc/php-fpm.d/www.conf' do
-  action :delete
-end
-
-cookbook_file "/etc/php-fpm.d/www.conf" do
-  source "www.conf"
-  mode "0644"
-  notifies :restart, "service[nginx]"
-end
-
 file "/home/#{app_user}/git_id_rsa" do
   owner app_user
   group app_group
