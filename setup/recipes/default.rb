@@ -11,10 +11,13 @@ execute "update-upgrade" do
   action :run
 end
 
-package "Webserver" do
-  package_name "nginx"
+#package "Webserver" do
+ # package_name "nginx"
+#end
+execute "install nginx" do
+command "amazon-linux-extras install nginx1.12"
+    action :run
 end
-
 package "FPM" do
   package_name "php-fpm"
 end
@@ -54,6 +57,16 @@ directory "Web app root" do
 end
 
 
+file '/etc/php-fpm.d/www.conf' do
+  action :delete
+end
+
+cookbook_file "/etc/php-fpm.d/www.conf" do
+  source "www.conf"
+  mode "0644"
+  notifies :restart, "service[nginx]"
+end
+
 file "/home/#{app_user}/git_id_rsa" do
   owner app_user
   group app_group
@@ -84,18 +97,18 @@ file "/etc/nginx/conf.d/#{node['main_domain']}.conf" do
 server {
     listen 80;
     listen [::]:80;
-    root /var/www/ali;
+    root #{app_path};
     index  index.php index.html index.htm;
-    server_name  #{node['main_domain'] www.'#{node['main_domain']';
+    server_name  #{node['main_domain']} www.#{node['main_domain']};
 
 
     location ~ [^/]\.php(/|$) {
-    fastcgi_split_path_info  '^(.+\.php)(/.+)$;
+    fastcgi_split_path_info  ^(.+\.php)(/.+)$;
     fastcgi_index            index.php;
     fastcgi_pass             unix:/var/run/php-fpm/php-fpm.sock;
     include                  fastcgi_params;
     fastcgi_param   PATH_INFO       $fastcgi_path_info;
-    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;'
+    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
 
 }"
@@ -117,6 +130,16 @@ package "git" do
   options "--force-yes" if node["platform"] == "ubuntu" && node["platform_version"] == "14.04"
 end
 
+
+file '/etc/php-fpm.d/www.conf' do
+  action :delete
+end
+
+cookbook_file "/etc/php-fpm.d/www.conf" do
+  source "www.conf"
+  mode "0644"
+  notifies :restart, "service[nginx]"
+end
 
 service 'php-fpm' do
   action :restart
