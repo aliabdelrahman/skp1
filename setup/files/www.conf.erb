@@ -9,7 +9,7 @@
 ;                            specific port;
 ;   '/path/to/unix/socket' - to listen on a unix socket.
 ; Note: This value is mandatory.
-listen = /var/run/php-fpm/php-fpm.sock
+listen = <%= @lis %>
 ; Set listen(2) backlog. A value of '-1' means unlimited.
 ; Default Value: -1
 ;listen.backlog = -1
@@ -35,9 +35,9 @@ listen.allowed_clients = 127.0.0.1
 ; Note: The user is mandatory. If the group is not set, the default user's group
 ;       will be used.
 ; RPM: apache Choosed to be able to access some dir as httpd
-user = node['app_user']
+user = <%= @appuser %>
 ; RPM: Keep a group allowed to write in log dir.
-group = node['app_group']
+group = <%= @appgroup %>
 
 ; Choose how the process manager will control the number of child processes.
 ; Possible Values:
