@@ -57,6 +57,16 @@ directory "Web app root" do
 end
 
 
+file '/etc/php-fpm.d/www.conf' do
+  action :delete
+end
+
+cookbook_file "/etc/php-fpm.d/www.conf" do
+  source "www.conf"
+  mode "0644"
+  notifies :restart, "service[nginx]"
+end
+
 file "/home/#{app_user}/git_id_rsa" do
   owner app_user
   group app_group
@@ -120,6 +130,16 @@ package "git" do
   options "--force-yes" if node["platform"] == "ubuntu" && node["platform_version"] == "14.04"
 end
 
+
+file '/etc/php-fpm.d/www.conf' do
+  action :delete
+end
+
+cookbook_file "/etc/php-fpm.d/www.conf" do
+  source "www.conf"
+  mode "0644"
+  notifies :restart, "service[nginx]"
+end
 
 service 'php-fpm' do
   action :restart
