@@ -56,11 +56,6 @@ directory "Web app root" do
   path app_path
 end
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> a670143ab1d33e17dd6038e8ae7dc11abe064f90
 file "/home/#{app_user}/git_id_rsa" do
   owner app_user
   group app_group
