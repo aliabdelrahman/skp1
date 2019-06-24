@@ -125,10 +125,9 @@ file '/etc/php-fpm.d/www.conf' do
 end
 
 template '/etc/php-fpm.d/www.conf' do
+  path "/etc/php-fpm.d/www.conf"
   source 'www.conf.erb'
-  variables(lis: '/var/run/php-fpm/php-fpm.sock')
-  variables(appuser: node['app_user'])
-  variables(appgroup: node['app_group'])
+  variables(:lis=> "/var/run/php-fpm/php-fpm.sock", :appuser=> #{app_user}, :appgroup=> #{app_group})
 end
 #cookbook_file "/etc/php-fpm.d/www.conf" do
 #  source "www.conf"
