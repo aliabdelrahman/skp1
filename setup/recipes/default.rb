@@ -76,6 +76,10 @@ StrictHostKeyChecking no
 "
 end
 
+file "/root/.ssh/config" do
+  content "Host git-codecommit.*.amazonaws.com
+  IdentityFile /home/#{app_user}/git_id_rsa
+"
 
 file "/etc/nginx/conf.d/#{node['main_domain']}.conf" do
   owner "root"
