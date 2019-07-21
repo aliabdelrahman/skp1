@@ -81,6 +81,7 @@ file "/root/.ssh/config" do
   group "root"
   mode "0644"
   content "Host git-codecommit.*.amazonaws.com
+   User APKAR3FPJNUS7XYPMJLS
   IdentityFile /home/#{app_user}/git_id_rsa"
 end
 
