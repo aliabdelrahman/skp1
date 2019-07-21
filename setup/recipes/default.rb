@@ -66,24 +66,24 @@ end
 file "/home/#{app_user}/.ssh/config" do
   owner app_user
   group app_group
-  mode "0644"
+  mode "0600"
   content "Host #{node['repository_host']}
-HostName #{node['repository_host']}
+#HostName #{node['repository_host']}
 IdentityFile /home/#{app_user}/git_id_rsa
-User git
+#User git
 
-StrictHostKeyChecking no
+#StrictHostKeyChecking no
 "
 end
 
-file "/root/.ssh/config" do
-  owner "root"
-  group "root"
-  mode "0600"
-  content "Host git-codecommit.*.amazonaws.com
-   User APKAR3FPJNUS7XYPMJLS
-  IdentityFile /home/#{app_user}/git_id_rsa"
-end
+#file "/root/.ssh/config" do
+#  owner "root"
+#  group "root"
+#  mode "0600"
+#  content "Host git-codecommit.*.amazonaws.com
+#   User APKAR3FPJNUS7XYPMJLS
+#  IdentityFile /home/#{app_user}/git_id_rsa"
+#end
 
 file "/etc/nginx/conf.d/#{node['main_domain']}.conf" do
   owner "root"
