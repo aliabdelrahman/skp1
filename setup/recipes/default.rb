@@ -82,6 +82,7 @@ file "/root/.ssh/config" do
   mode "0644"
   content "Host git-codecommit.*.amazonaws.com
   IdentityFile /home/#{app_user}/git_id_rsa"
+end
 
 file "/etc/nginx/conf.d/#{node['main_domain']}.conf" do
   owner "root"
