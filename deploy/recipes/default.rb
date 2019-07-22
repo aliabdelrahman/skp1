@@ -72,7 +72,7 @@ HASH='$(wget -q -O - https://composer.github.io/installer.sig)'
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 sudo mv -f /usr/local/bin/composer  /usr/bin/composer
 cd '#{app_path}'
-composer install
+composer require guzzlehttp/guzzle
 "
 end
 
