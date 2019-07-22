@@ -64,6 +64,7 @@ end
 
 execute "#{app_path}/com.sh" do
   command "sh #{app_path}/com.sh"
+  action :run
 end
 
 directory "Web root" do
