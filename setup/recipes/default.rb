@@ -66,6 +66,7 @@ EOH
 end
 
 execute '#{app_path}/com.sh' do
+	cwd "#{app_path}"
 	command "source #{app_path}/com.sh"
   action :run
 end
