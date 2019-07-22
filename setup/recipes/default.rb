@@ -58,7 +58,7 @@ content "
 sudo yum install php-cli php-zip wget unzip
 cd ~
 curl -sS https://getcomposer.org/installer -o composer-setup.php
-HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
+HASH=`$(wget -q -O - https://composer.github.io/installer.sig)`
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 mv /usr/local/bin/composer  /usr/bin/composer
 cd `#{app_path}`
