@@ -48,7 +48,7 @@ package "php-mysql" do
   action :install
 end
 
-file '#{app_path}/com.sh' do
+file `#{app_path}/com.sh` do
   mode '0666'
 end
 
