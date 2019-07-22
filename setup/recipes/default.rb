@@ -24,6 +24,11 @@ command "amazon-linux-extras install php7.2"
     action :run
 end
 
+execute "install php extensions" do
+command "sudo yum install php-mbstring php-dom -y "
+    action :run
+end
+
 package "FPM" do
   package_name "php-fpm"
 end
