@@ -74,9 +74,8 @@ file "/home/#{app_user}/.ssh/config" do
   content "Host #{node['repository_host']}
 #HostName #{node['repository_host']}
 IdentityFile /home/#{app_user}/git_id_rsa
-#User git
-
-#StrictHostKeyChecking no
+User #{node['user_com']}
+StrictHostKeyChecking no
 "
 end
 
