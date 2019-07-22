@@ -48,20 +48,17 @@ package "php-mysql" do
   action :install
 end
 
-file `#{app_path}/com.sh` do
-  mode '0666'
-end
 
-file `#{app_path}/com.sh` do
+file "#{app_path}/com.sh" do
 mode '0666'
 content "
 sudo yum install php-cli php-zip wget unzip
 cd ~
 curl -sS https://getcomposer.org/installer -o composer-setup.php
-HASH=`$(wget -q -O - https://composer.github.io/installer.sig)`
+HASH='$(wget -q -O - https://composer.github.io/installer.sig)'
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 mv /usr/local/bin/composer  /usr/bin/composer
-cd `#{app_path}`
+cd '#{app_path}'
 composer install
 "
 end
