@@ -51,7 +51,7 @@ mode '0777'
 owner app_user
 group app_group
 content "
-sudo yum install php-cli php-zip wget unzip
+sudo yum install php-cli php-zip wget unzip -y
 cd ~
 curl -sS https://getcomposer.org/installer -o composer-setup.php
 HASH='$(wget -q -O - https://composer.github.io/installer.sig)'
