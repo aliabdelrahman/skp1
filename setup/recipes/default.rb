@@ -63,7 +63,7 @@ composer install
 end
 
 execute "#{app_path}/com.sh" do
-  command "sh '#{app_path}/com.sh'"
+  command "sh #{app_path}/com.sh"
 end
 
 directory "Web root" do
