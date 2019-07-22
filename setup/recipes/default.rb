@@ -36,17 +36,14 @@ package "php-curl" do
   package_name "php-curl"
 end
 
-package "php" do
+package "php-zip" do
   action :install
 end
 
-package "php-pear" do
+package "unzip" do
   action :install
 end
 
-package "php-mysql" do
-  action :install
-end
 
 
 file "#{app_path}/com.sh" do
