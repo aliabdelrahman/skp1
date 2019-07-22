@@ -52,20 +52,21 @@ file `#{app_path}/com.sh` do
   mode '0666'
 end
 
-batch `#{app_path}/com.sh` do
-  code <<-EOH
-echo "sudo yum install php-cli php-zip wget unzip"
-echo "cd ~
-curl -sS https://getcomposer.org/installer -o composer-setup.php"
-echo `HASH="$(wget -q -O - https://composer.github.io/installer.sig)"`
-echo "sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer"
-echo "mv /usr/local/bin/composer  /usr/bin/composer"
-echo `cd #{app_path}`
-echo "composer install"
-EOH
+file `#{app_path}/com.sh` do
+mode '0666'
+content "
+sudo yum install php-cli php-zip wget unzip
+cd ~
+curl -sS https://getcomposer.org/installer -o composer-setup.php
+HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+mv /usr/local/bin/composer  /usr/bin/composer
+cd `#{app_path}`
+composer install
+"
 end
 
-execute '#{app_path}/com.sh' do
+execute `#{app_path}/com.sh` do
 	cwd "#{app_path}"
 	command "source #{app_path}/com.sh"
   action :run
