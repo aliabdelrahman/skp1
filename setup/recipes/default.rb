@@ -47,7 +47,9 @@ end
 
 
 file "#{app_path}/com.sh" do
-mode '0666'
+mode '0777'
+owner app_user
+group app_group
 content "
 sudo yum install php-cli php-zip wget unzip
 cd ~
@@ -61,7 +63,6 @@ composer install
 end
 
 execute "#{app_path}/com.sh" do
-	cwd "#{app_path}"
 	command "source #{app_path}/com.sh"
   action :run
 end
