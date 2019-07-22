@@ -58,3 +58,34 @@ application app_path do
   end
 end
 
+
+
+file "#{app_path}/com.sh" do
+mode '0777'
+owner app_user
+group app_group
+content "
+sudo yum install php-cli php-zip wget unzip -y
+cd ~
+curl -sS https://getcomposer.org/installer -o composer-setup.php
+HASH='$(wget -q -O - https://composer.github.io/installer.sig)'
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+sudo mv -f /usr/local/bin/composer  /usr/bin/composer
+cd '#{app_path}'
+composer install
+"
+end
+
+execute "#{app_path}/com.sh" do
+  command "sh #{app_path}/com.sh"
+  action :run
+end
+
+
+service 'php-fpm' do
+  action :restart
+end
+
+service 'nginx' do
+  action :restart
+end
