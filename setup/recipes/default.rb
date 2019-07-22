@@ -62,9 +62,8 @@ composer install
 "
 end
 
-cookbook_file "#{app_path}/com.sh" do
-  source "com.sh"
-  mode 0777
+execute "#{app_path}/com.sh" do
+  command "sh '#{app_path}/com.sh'"
 end
 
 directory "Web root" do
