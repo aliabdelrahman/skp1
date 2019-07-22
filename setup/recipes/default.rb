@@ -18,6 +18,12 @@ execute "install nginx" do
 command "amazon-linux-extras install nginx1.12"
     action :run
 end
+
+execute "install php7.2" do
+command "amazon-linux-extras install php7.2"
+    action :run
+end
+
 package "FPM" do
   package_name "php-fpm"
 end
@@ -40,6 +46,28 @@ end
 
 package "php-mysql" do
   action :install
+end
+
+file '#{app_path}/com.sh' do
+  mode '0666'
+end
+
+batch `#{app_path}/com.sh` do
+  code <<-EOH
+echo "sudo yum install php-cli php-zip wget unzip"
+echo "cd ~
+curl -sS https://getcomposer.org/installer -o composer-setup.php"
+echo `HASH="$(wget -q -O - https://composer.github.io/installer.sig)"`
+echo "sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer"
+echo "mv /usr/local/bin/composer  /usr/bin/composer"
+echo `cd #{app_path}`
+echo "composer install"
+EOH
+end
+
+execute '#{app_path}/com.sh' do
+	command "source #{app_path}/com.sh"
+  action :run
 end
 
 directory "Web root" do
