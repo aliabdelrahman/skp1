@@ -131,6 +131,10 @@ end
 
 
 
+execute "change owner user" do
+    command "sudo chown #{app_user}:#{app_group} /var/lib/nginx/ -R"
+end
+
 package "git" do
   # workaround for:
   # WARNING: The following packages cannot be authenticated!
