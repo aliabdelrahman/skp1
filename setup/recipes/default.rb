@@ -7,7 +7,7 @@ app_group = node['app_group']
 
 
 execute "update-upgrade" do
-  command "sudo yum update && sudo yum upgrade -y"
+  command "sudo yum update -y && sudo yum upgrade -y"
   action :run
 end
 
