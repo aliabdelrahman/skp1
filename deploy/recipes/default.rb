@@ -78,7 +78,6 @@ end
 
 execute "#{app_path}/com.sh" do
   command "sh #{app_path}/com.sh"
-  action :run
 end
 
 
@@ -88,14 +87,8 @@ template "#{app_path}/.env" do
   variables(:urldb=> node['urldb'], :dbname=> node['dbname'], :dbuser=> node['dbuser'], :dbpassword=> node['dbpassword'])
 end
 
-execute "change owner" do
-  command "sudo chown ec2-user:ec2-user /var/lib/nginx/ -R"
-  action :run
-end
-
 execute "key:generate" do
   command "sudo php artisan key:generate"
-  action :run
 end
 
 service 'php-fpm' do
