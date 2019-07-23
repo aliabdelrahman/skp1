@@ -82,9 +82,9 @@ execute "#{app_path}/com.sh" do
 end
 
 
-template '#{app_path}/.env' do
-  path '#{app_path}/.env'
-  source '.env.erb'
+template "#{app_path}/.env" do
+  path "#{app_path}/.env"
+  source ".env.erb"
   variables(:urldb=> node['urldb'], :dbname=> node['dbname'], :dbuser=> node['dbuser'], :dbpassword=> node['dbpassword'])
 end
 
