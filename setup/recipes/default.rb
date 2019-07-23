@@ -102,10 +102,14 @@ file "/etc/nginx/conf.d/#{node['main_domain']}.conf" do
 server {
     listen 80;
     listen [::]:80;
-    root #{app_path};
+    root #{app_path}/public;
     index  index.php index.html index.htm;
     server_name  #{node['main_domain']} www.#{node['main_domain']};
 
+
+    location / {
+    try_files $uri $uri/ /index.php?$query_string;
+     }
 
     location ~ [^/]\.php(/|$) {
     fastcgi_split_path_info  ^(.+\.php)(/.+)$;
