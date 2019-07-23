@@ -88,6 +88,12 @@ template "#{app_path}/.env" do
   variables(:urldb=> node['urldb'], :dbname=> node['dbname'], :dbuser=> node['dbuser'], :dbpassword=> node['dbpassword'])
 end
 
+
+execute "key:generate" do
+  command "sudo php artisan key:generate"
+  action :run
+end
+
 service 'php-fpm' do
   action :restart
 end
