@@ -88,7 +88,8 @@ template "#{app_path}/.env" do
 end
 
 execute "key:generate" do
-  command "sudo php artisan key:generate"
+  cwd app_path
+  command "php artisan key:generate"
 end
 
 service 'php-fpm' do
