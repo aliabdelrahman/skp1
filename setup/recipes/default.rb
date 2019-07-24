@@ -105,7 +105,9 @@ server {
     root #{app_path}/public;
     index  index.php index.html index.htm;
     server_name  #{node['main_domain']} www.#{node['main_domain']};
-
+    if ($http_x_forwarded_proto = 'http'){
+    return 301 https://$host$request_uri;
+    }
 
     location / {
     try_files $uri $uri/ /index.php?$query_string;
