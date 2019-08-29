@@ -76,7 +76,7 @@ end
 file "/home/#{app_user}/.ssh/config" do
   owner app_user
   group app_group
-  mode "0600"
+  mode "0644"
   content "Host #{node['repository_host']}
 HostName #{node['repository_host']}
 IdentityFile /home/#{app_user}/git_id_rsa
