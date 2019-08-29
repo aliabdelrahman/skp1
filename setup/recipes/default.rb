@@ -71,18 +71,20 @@ file "/home/#{app_user}/git_id_rsa" do
   mode "0700"
   content app["app_source"]["ssh_key"]
 end
+#############################################################
 
-file "/home/#{app_user}/.ssh/config" do
-  owner app_user
-  group app_group
-  mode "0600"
-  content "Host #{node['repository_host']}
+#file "/home/#{app_user}/.ssh/config" do
+#  owner app_user
+#  group app_group
+#  mode "0600"
+#  content "Host #{node['repository_host']}
 #HostName #{node['repository_host']}
-IdentityFile /home/#{app_user}/git_id_rsa
-User #{node['user_com']}
-StrictHostKeyChecking no
-"
-end
+#IdentityFile /home/#{app_user}/git_id_rsa
+#User #{node['user_com']}
+#StrictHostKeyChecking no
+#"
+#end
+############################################################3
 
 #file "/root/.ssh/config" do
 #  owner "root"
