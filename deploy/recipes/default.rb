@@ -13,12 +13,12 @@ application app_path do
   #javascript "4"
   environment.update(app["environment"])
 
-#  git app_path do
-#    user app_user
-#    group app_group
-#    repository app["app_source"]["url"]
-#    #revision app["app_source"]["revision"]
-#  end
+  git app_path do
+    user app_user
+    group app_group
+    repository app["app_source"]["url"]
+    #revision app["app_source"]["revision"]
+  end
 
   execute 'git clone' do
     user app_user
