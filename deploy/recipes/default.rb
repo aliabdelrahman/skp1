@@ -87,10 +87,11 @@ template "#{app_path}/.env" do
   variables(:urldb=> node['urldb'], :dbname=> node['dbname'], :dbuser=> node['dbuser'], :dbpassword=> node['dbpassword'])
 end
 
-execute "key:generate" do
-  cwd app_path
-  command "php artisan key:generate"
-end
+#new aws account
+#execute "key:generate" do
+#  cwd app_path
+#  command "php artisan key:generate"
+#end
 
 service 'php-fpm' do
   action :restart
